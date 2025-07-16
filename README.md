@@ -18,7 +18,7 @@ This repository contains a minimal Docker Compose configuration for running [Alb
 3. Start the services with `docker compose up -d`.
 4. Caddy will automatically obtain HTTPS certificates and forward traffic to the Alby Hub container.
 
-Application data is stored in the `albyhub-data` directory. Caddy stores its configuration and certificates in `caddy/data` and `caddy/config`.
+Application data is stored in the `../albyhub` directory (relative to this repository). Caddy stores its configuration and certificates in `caddy/data` and `caddy/config`.
 ## Managing Services
 
 Start the containers in the background with:
