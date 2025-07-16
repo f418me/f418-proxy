@@ -1,4 +1,4 @@
-albyhub.f418.ch {
+albyhub.f418.me {
     reverse_proxy albyhub:8080
 
     # Compression and basic security headers
