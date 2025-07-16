@@ -1,10 +1,10 @@
-# AlbyHub Docker Setup
+# AlbyHub Container Setup (Podman)
 
-This repository contains a minimal Docker Compose configuration for running [Alby Hub](https://github.com/getAlby/hub) and the f418 website behind a Caddy reverse proxy.
+This repository contains a minimal Compose configuration for running [Alby Hub](https://github.com/getAlby/hub) and the f418 website behind a Caddy reverse proxy. It works with Podman Compose as a drop-in replacement for Docker Compose.
 
 ## Prerequisites
 
-- Docker and Docker Compose installed on your host machine
+- Podman installed on your host machine (with the `podman compose` plugin)
 - A domain name you control for HTTPS
 
 ## Setup
@@ -15,7 +15,7 @@ This repository contains a minimal Docker Compose configuration for running [Alb
    - `PORT` – the internal port used by the application (default: `8080`).
    - `JWT_SECRET` – a random secret used for authentication.
    - `CADDY_ACME_EMAIL` – email address for Let's Encrypt certificates.
-3. Start the services with `docker compose up -d`.
+3. Start the services with `podman compose up -d`.
 4. Caddy will automatically obtain HTTPS certificates and forward traffic to the Alby Hub container.
 5. The `f418-website` container is exposed via `https://f418.me` through the Caddy proxy.
 
@@ -25,37 +25,37 @@ Application data is stored in the `../albyhub` directory (relative to this repos
 Start the containers in the background with:
 
 ```bash
-docker compose up -d
+podman compose up -d
 ```
 
 Stop and remove them:
 
 ```bash
-docker compose down
+podman compose down
 ```
 
 To stop without removing containers, use:
 
 ```bash
-docker compose stop
+podman compose stop
 ```
 
 Monitor running containers:
 
 ```bash
-docker compose ps
+podman compose ps
 ```
 
 Follow logs in real time:
 
 ```bash
-docker compose logs -f
+podman compose logs -f
 ```
 
 
 ## File Overview
 
-- `docker-compose.yml` – defines the Alby Hub, website and Caddy services.
+- `docker-compose.yml` – Compose file compatible with Podman Compose (and Docker Compose) defining the Alby Hub, website and Caddy services.
 - `caddy/Caddyfile` – Caddy configuration for the reverse proxy to `albyhub.f418.me` and `f418.me`.
 - `.env-example` – environment variables example file.
 
