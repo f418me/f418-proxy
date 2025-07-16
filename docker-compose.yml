@@ -4,7 +4,7 @@ services:
     container_name: albyhub
     env_file: .env
     volumes:
-      - ../albyhub:/data
+      - ../albyhub/albyhub-data:/data
     expose:             # internal only - no public port needed
       - "8080"
     restart: unless-stopped
