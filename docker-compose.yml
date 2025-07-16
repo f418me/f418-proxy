@@ -11,11 +11,21 @@ services:
     networks:
       - web
 
+  website:
+    image: f418-website
+    container_name: website
+    expose:
+      - "3000"
+    restart: unless-stopped
+    networks:
+      - web
+
   caddy:
     image: caddy:2
     container_name: caddy
     depends_on:
       - albyhub
+      - website
     environment:
       - ACME_AGREE=true
       - EMAIL=${CADDY_ACME_EMAIL}

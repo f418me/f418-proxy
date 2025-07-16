@@ -1,6 +1,6 @@
 # AlbyHub Docker Setup
 
-This repository contains a minimal Docker Compose configuration for running [Alby Hub](https://github.com/getAlby/hub) behind a Caddy reverse proxy.
+This repository contains a minimal Docker Compose configuration for running [Alby Hub](https://github.com/getAlby/hub) and the f418 website behind a Caddy reverse proxy.
 
 ## Prerequisites
 
@@ -17,6 +17,7 @@ This repository contains a minimal Docker Compose configuration for running [Alb
    - `CADDY_ACME_EMAIL` – email address for Let's Encrypt certificates.
 3. Start the services with `docker compose up -d`.
 4. Caddy will automatically obtain HTTPS certificates and forward traffic to the Alby Hub container.
+5. The `f418-website` container is exposed via `https://f418.me` through the Caddy proxy.
 
 Application data is stored in the `../albyhub` directory (relative to this repository). Caddy stores its configuration and certificates in `caddy/data` and `caddy/config`.
 ## Managing Services
@@ -54,7 +55,7 @@ docker compose logs -f
 
 ## File Overview
 
-- `docker-compose.yml` – defines the Alby Hub and Caddy services.
-- `caddy/Caddyfile` – Caddy configuration for the reverse proxy.
+- `docker-compose.yml` – defines the Alby Hub, website and Caddy services.
+- `caddy/Caddyfile` – Caddy configuration for the reverse proxy to `albyhub.f418.me` and `f418.me`.
 - `.env-example` – environment variables example file.
 
