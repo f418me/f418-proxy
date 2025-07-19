@@ -33,3 +33,14 @@ boltcipher.f418.me {
     }
 }
 
+boltcipherverifier.f418.me {
+    reverse_proxy boltcipherverifier:8000
+
+    # Compression and basic security headers
+    encode gzip
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options    "nosniff"
+    }
+}
+
