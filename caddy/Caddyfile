@@ -22,8 +22,8 @@ f418.me {
 
 boltcipher.f418.me {
     # BOLTCipher runs outside of the compose setup on the host. We forward
-    # requests to the host's port 8080.
-    reverse_proxy host.docker.internal:8080
+    # requests to the host's port 8081.
+    reverse_proxy host.docker.internal:8081
 
     # Compression and basic security headers
     encode gzip

@@ -29,6 +29,9 @@ services:
     environment:
       - ACME_AGREE=true
       - EMAIL=${CADDY_ACME_EMAIL}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      - "host.containers.internal:host-gateway"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./caddy/data:/data
