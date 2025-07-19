@@ -52,10 +52,15 @@ Follow logs in real time:
 podman compose logs -f
 ```
 
+## BOLTCipher
+
+BOLTCipher is an additional service that currently runs outside of the Compose environment. Start it on the host so that it listens on port `8080`. The Caddy proxy forwards `https://boltcipher.f418.me` to this local service via `host.docker.internal:8080`. No container configuration is required at this time.
+
+ 
 
 ## File Overview
 
 - `docker-compose.yml` – Compose file compatible with Podman Compose (and Docker Compose) defining the Alby Hub, website and Caddy services.
-- `caddy/Caddyfile` – Caddy configuration for the reverse proxy to `albyhub.f418.me` and `f418.me`.
+- `caddy/Caddyfile` – Caddy configuration for the reverse proxy to `albyhub.f418.me`, `f418.me` and `boltcipher.f418.me`.
 - `.env-example` – environment variables example file.
 
