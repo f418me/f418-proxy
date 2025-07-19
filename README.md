@@ -54,7 +54,7 @@ podman compose logs -f
 
 ## BOLTCipher
 
-BOLTCipher is an additional service that currently runs outside of the Compose environment. Start it on the host so that it listens on port `8080`. The Caddy proxy forwards `https://boltcipher.f418.me` to this local service via `host.docker.internal:8080`. No container configuration is required at this time.
+BOLTCipher is an additional service that currently runs outside of the Compose environment. Start it on the host so that it listens on port `8081`. The Caddy proxy forwards `https://boltcipher.f418.me` to this local service. The Compose file maps both `host.docker.internal` and `host.containers.internal` to the host gateway so the container can resolve the address regardless of whether you use Docker or Podman. No additional container configuration is required.
 
  
 
