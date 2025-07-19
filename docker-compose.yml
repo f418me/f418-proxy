@@ -20,12 +20,22 @@ services:
     networks:
       - web
 
+  boltcipherverifier:
+    build: ./boltcipherverifier
+    container_name: boltcipherverifier
+    expose:
+      - "8000"
+    restart: unless-stopped
+    networks:
+      - web
+
   caddy:
     image: caddy:2
     container_name: caddy
     depends_on:
       - albyhub
       - website
+      - boltcipherverifier
     environment:
       - ACME_AGREE=true
       - EMAIL=${CADDY_ACME_EMAIL}
