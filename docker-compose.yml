@@ -21,7 +21,7 @@ services:
       - web
 
   boltcipherverifier:
-    build: ./boltcipherverifier
+    image: boltcipherverifier
     container_name: boltcipherverifier
     expose:
       - "8000"
