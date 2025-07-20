@@ -52,10 +52,29 @@ Follow logs in real time:
 podman compose logs -f
 ```
 
+## BOLTCipher
+
+BOLTCipher is an additional service that currently runs outside of the Compose environment. Start it on the host so that it listens on port `8081`. The Caddy proxy forwards `https://boltcipher.f418.me` to this local service. The Compose file maps both `host.docker.internal` and `host.containers.internal` to the host gateway so the container can resolve the address regardless of whether you use Docker or Podman. No additional container configuration is required.
+
+## BOLTCipherverifier
+
+BOLTCipherverifier runs inside the Compose setup. The service code is maintained
+in a separate project, but Compose expects it to be available in the
+`boltcipherverifier` directory (or adjust the path accordingly). It listens on
+port `8000`. Caddy forwards `https://boltcipherverifier.f418.me` to this
+container.
+
+When running behind the Caddy reverse proxy, make sure the Uvicorn server is
+started with the `--proxy-headers` option (and `--forwarded-allow-ips=*`) so
+that generated URLs use `https`. Without this, browsers may report *mixed
+content* errors because links to static files are rendered with `http`.
+
+ 
 
 ## File Overview
 
 - `docker-compose.yml` – Compose file compatible with Podman Compose (and Docker Compose) defining the Alby Hub, website and Caddy services.
-- `caddy/Caddyfile` – Caddy configuration for the reverse proxy to `albyhub.f418.me` and `f418.me`.
+- `caddy/Caddyfile` – Caddy configuration for the reverse proxy to `albyhub.f418.me`, `f418.me`, `boltcipher.f418.me` and `boltcipherverifier.f418.me`.
 - `.env-example` – environment variables example file.
+- `boltcipherverifier/` – (not included) directory for the BOLTCipherverifier service code.
 

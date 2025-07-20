@@ -20,3 +20,27 @@ f418.me {
     }
 }
 
+boltcipher.f418.me {
+    # BOLTCipher runs outside of the compose setup on the host. We forward
+    # requests to the host's port 8081.
+    reverse_proxy host.docker.internal:8081
+
+    # Compression and basic security headers
+    encode gzip
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options    "nosniff"
+    }
+}
+
+boltcipherverifier.f418.me {
+    reverse_proxy boltcipherverifier:8000
+
+    # Compression and basic security headers
+    encode gzip
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options    "nosniff"
+    }
+}
+
