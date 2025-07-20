@@ -23,6 +23,7 @@ services:
   boltcipherverifier:
     image: boltcipherverifier
     container_name: boltcipherverifier
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips="*"
     expose:
       - "8000"
     restart: unless-stopped

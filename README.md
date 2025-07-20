@@ -64,6 +64,11 @@ in a separate project, but Compose expects it to be available in the
 port `8000`. Caddy forwards `https://boltcipherverifier.f418.me` to this
 container.
 
+When running behind the Caddy reverse proxy, make sure the Uvicorn server is
+started with the `--proxy-headers` option (and `--forwarded-allow-ips=*`) so
+that generated URLs use `https`. Without this, browsers may report *mixed
+content* errors because links to static files are rendered with `http`.
+
  
 
 ## File Overview
