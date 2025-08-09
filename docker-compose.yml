@@ -30,6 +30,16 @@ services:
     networks:
       - web
 
+  mcp:
+    image: f418me-mcp-server
+    container_name: mcp
+    env_file: .env
+    expose:
+      - "3001"
+    restart: unless-stopped
+    networks:
+      - web
+
   caddy:
     image: caddy:2
     container_name: caddy
@@ -37,6 +47,7 @@ services:
       - albyhub
       - website
       - boltcipherverifier
+      - mcp
     environment:
       - ACME_AGREE=true
       - EMAIL=${CADDY_ACME_EMAIL}
